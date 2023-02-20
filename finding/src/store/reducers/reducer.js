@@ -1,14 +1,14 @@
 import { combineReducers } from "redux";
-// import planetsReducer from "./planetsReducer";
-// import vehiclesReducer from "./vehiclesReducer";
+import planetsReducer from "./planetsReducer";
+import vehiclesReducer from "./vehiclesReducer";
 import destinationReducer from "./destinationReducer";
-// import findFalconeReducer from "./findFalconeReducer";
-// import  errorReducer  from './errorReducer';
-
+import findFalconReducer from "./findFalconReducer";
+import  errorReducer  from './errorReducer';
+// 
 export default combineReducers({
-    // planets : planetsReducer,
-    // vehicles : vehiclesReducer,
+    planets : planetsReducer,
+    vehicles : vehiclesReducer,
     destinations : destinationReducer,
-    // findFalcone : findFalconeReducer,
-    // error: errorReducer
+    findFalcon : findFalconReducer,
+    error: errorReducer
 });
