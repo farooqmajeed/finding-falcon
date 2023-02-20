@@ -4,7 +4,7 @@ import { createAction } from "@reduxjs/toolkit";
 export const fetchPlanetAction = createAction("fetchPlanetAction");
 export const fetchVehiclesAction = createAction("fetchVehiclesAction");
 
-export const getInitialDestinationAction = createAction("getInitialDestinationAction");
+export const getInitialDestinationsAction = createAction("getInitialDestinationsAction");
 export const addDestinationAction = createAction("addDestination");
 export const vehicleSelectedAction = createAction("vehicleSelected");
 

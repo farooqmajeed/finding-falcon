@@ -1,5 +1,5 @@
 import {
-  getInitialDestinationAction,
+  getInitialDestinationsAction,
   addDestinationAction,
   vehicleSelectedAction,
 } from "./actions";
@@ -10,7 +10,7 @@ export const getInitialDestinations = () => (dispatch) => {
   for (let i = 1; i <= NUMBER_OF_DESTINATIONS; i++) {
     destinations.push("destination" + i);
   }
-  dispatch(getInitialDestinationAction(destinations));
+  dispatch(getInitialDestinationsAction(destinations));
 };
 
 export const addDestination = (data) => (dispatch) => {

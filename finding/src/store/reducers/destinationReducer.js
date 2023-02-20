@@ -1,24 +1,30 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { getInitialDestinationAction, addDestinationAction, vehicleSelectedAction} from '../action/actions'
+import {
+  getInitialDestinationsAction,
+  addDestinationAction,
+  vehicleSelectedAction,
+} from "../action/actions";
 
 const reducer = createReducer(
-    {},
-    {   
-        [getInitialDestinationAction.type]: (destination, action) =>{
-            action.payload.array.forEach(element => {
-                destination[element] = {}
-            });
-        }
+  {},
+  {
+    [getInitialDestinationsAction.type]: (destinations, action) => {
+      action.payload.forEach((dest) => {
+        destinations[dest] = {};
+      });
     },
-    {
-        [addDestinationAction.type]: (destination, action) =>{
-            destination[action.destination] = {
-                selectPlanet = action.payload.value,
-                showVehicle = true
-            }
-        };
+    [addDestinationAction.type]: (destinations, action) => {
+      destinations[action.payload.destination] = {
+        selectedPlanet: action.payload.value,
+        showVehicle: true,
+      };
     },
-    [vehicleSelectedAction.type]: (destination, action) =>{
-        const { timeTaken, selectedVehicle, destination } = action.payload;
-    }
-)
+    [vehicleSelectedAction.type]: (destinations, action) => {
+      const { timetaken, selectedVehicle, destination } = action.payload;
+      destinations[destination].selectedVehicle = selectedVehicle;
+      destinations[destination].timetaken = timetaken;
+    },
+  }
+);
+
+export default reducer;
