@@ -27,20 +27,13 @@ export default function Home() {
 
 
   React.useEffect( () => {
-    //  dispatch(fetchPlanets());
-    //  dispatch(fetchVehicles());
-    //  dispatch (getInitialDestinations());
-    //  dispatch(getToken());
-    //  dispatch(findFalcon())
+     dispatch(fetchPlanets());
+     dispatch(fetchVehicles());
     dispatch(getInitialDestinations());
-    dispatch(fetchPlanets());
-    dispatch(fetchVehicles());
-    dispatch(getToken());
-     
   }, [])
 
   const findFalcone = async () => {
-    if(allStates.findFalcon.token){
+    if (allStates.findFalcon.token) {
       let request = {
         token: allStates.findFalcon.token,
         planet_names: getSelectedPlanets(allStates),
@@ -54,8 +47,9 @@ export default function Home() {
   // const planets = useSelector((state) => state.planets)
   // const vehicles = useSelector((state) => state.vehicles)
   // const token = useSelector((state) => state.token);
-  console.log("Home", allStates );
+  console.log("Home", allStates);
   return (
+    <>
     <Container className='container'>
       <header className='header'>
         Finding Falcon
@@ -78,7 +72,8 @@ export default function Home() {
             </Grid>
           ) : <CircularProgress />
           } */}
-          <Button variant="contained" onClick={findFalcone}>Hello World</Button>
+      <Button variant="contained" onClick={findFalcone}>Hello World</Button>
     </Container>
+    </>
   );
-}
+};

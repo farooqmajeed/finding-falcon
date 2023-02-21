@@ -6,14 +6,14 @@ import {fetchPlanetAction} from "./actions";
 //actions
 
 export const fetchPlanets = () => async (dispatch) => {
-    console.log("fetching", PLANET_API)
+  console.log("fetch",dispatch )
     return dispatch({
-        type: "apiCallBegan",
-        payload: {
-            url : PLANET_API,
-            onSuccess: fetchPlanetAction.type,
-            onError: FETCH_PLANETS_FAILED_MSG
-        }
+      type: "apiCallBegan",
+      payload: {
+        url : PLANET_API,
+        onSuccess: fetchPlanetAction.type,
+        onError: FETCH_PLANETS_FAILED_MSG
+      }
     })
 };
 
@@ -24,7 +24,6 @@ export const getAvailablePlanets = state => {
     const selectedPlanet = state.destinations[dest].selectedPlanet;
     if (selectedPlanet) {
       selectedPlanets.push(state.destinations[dest].selectedPlanet);
-      console.log("selectedPlanets,", selectedPlanets)
     }
   });
   // eslint-disable-next-line

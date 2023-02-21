@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import './component.css'
 import { SELECT_DEST_MSG } from '../store/constant';
-import { useDispatch, useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import {
     addDestination
   } from "../store/action/destinations";
@@ -49,4 +49,4 @@ function Destination(props) {
     )
 }
 
-export default Destination;
+export default connect( Destination);

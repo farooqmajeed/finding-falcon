@@ -42,7 +42,6 @@ export const getToken = () => async (dispatch) => {
   return await axios
     .post(url.AUTH_TOKEN_URL)
     .then((response) => {
-        console.log("getToken")
       dispatch(fetchTokenAction(response.data));
     })
     .catch((error) => {

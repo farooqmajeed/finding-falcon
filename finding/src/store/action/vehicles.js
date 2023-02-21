@@ -4,7 +4,6 @@ import {fetchVehiclesAction} from "./actions";
 //actioncreators
 
 export const fetchVehicles = () => async (dispatch) => {
-    console.log("fetchVehicles")
     return dispatch({
       type: "apiCallBegan",
       payload: {

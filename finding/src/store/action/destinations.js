@@ -1,16 +1,13 @@
-import {
-  getInitialDestinationsAction,
-  addDestinationAction,
-  vehicleSelectedAction,
-} from "./actions";
-import { NUMBER_OF_DESTINATIONS } from "../constant";
+import {getInitialDestinationsAction, addDestinationAction, vehicleSelectedAction} from "./actions";
+import {NUMBER_OF_DESTINATIONS} from "../constant";
 
+//actions
 export const getInitialDestinations = () => (dispatch) => {
   const destinations = [];
-  for (let i = 1; i <= NUMBER_OF_DESTINATIONS; i++) {
-    destinations.push("destination" + i);
+  for (let i=1; i <= NUMBER_OF_DESTINATIONS ;i++){
+    destinations.push("destination"+i);
   }
-  dispatch(getInitialDestinationsAction(destinations));
+  dispatch(getInitialDestinationsAction(destinations))
 };
 
 export const addDestination = (data) => (dispatch) => {
@@ -21,15 +18,16 @@ export const vehicleSelected = (data) => (dispatch) => {
   dispatch(vehicleSelectedAction(data));
 };
 
-export const getTimeTaken = (state) => {
-  let timeTaken = 0;
+
+export const getTimeTaken = state => {
+  let timetaken = 0;
   Object.keys(state.destinations).forEach((key) => {
     if (state.destinations[key]) {
-      let curr_time = state.destinations[key].timeTaken;
+      let curr_time = state.destinations[key].timetaken;
       if (curr_time) {
-        timeTaken += curr_time;
+        timetaken += curr_time;
       }
     }
   });
-  return timeTaken;
-};
+  return timetaken;
+}
