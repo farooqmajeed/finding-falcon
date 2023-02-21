@@ -19,12 +19,12 @@ function Destination(props) {
         console.log('Destination props', props);
     }, [])
 
-    // const onDestinationChange = (event) => {
-    //     dispatch(addDestination({
-    //         destination: props.index,
-    //         value: event.currentTarget.value
-    //     }))
-    // }
+    const onDestinationChange = (event) => {
+        dispatch(addDestination({
+            destination: props.index,
+            value: event.currentTarget.value
+        }))
+    }
 
 
     //    const getClassName = () => {
@@ -35,18 +35,18 @@ function Destination(props) {
 
     return (
         <div className='destination'>
-            {/* <FormControl className='destination-select'>
+            <FormControl className='destination-select'>
                 <InputLabel htmlFor="outlined-age-native-simple" >
                     {SELECT_DEST_MSG}
                 </InputLabel>
-                <NativeSelect value={selectedValue} onChange={(event) => {onDestinationChange(event)}} label="Destination">
+                {/* <NativeSelect value={selectedValue} onChange={(event) => {onDestinationChange(event)}} label="Destination">
                     <option value={selectedValue}>{selectedValue}</option>
                     {optionItems}
-                </NativeSelect>
-            </FormControl> */}
+                </NativeSelect> */}
+            </FormControl>
         </div>
 
     )
 }
 
-export default connect( Destination);
+export default  Destination;

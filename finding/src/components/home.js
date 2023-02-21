@@ -21,6 +21,7 @@ import {
 } from "../store/action/planets";
 import { findFalcon, getToken } from "../store/action/findFalcon";
 import Destination from './destination';
+import { NUMBER_OF_DESTINATIONS } from '../store/constant';
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -44,35 +45,75 @@ export default function Home() {
   }
 
   const allStates = useSelector((state) => state)
-  // const planets = useSelector((state) => state.planets)
-  // const vehicles = useSelector((state) => state.vehicles)
-  // const token = useSelector((state) => state.token);
-  console.log("Home", allStates);
+  const planets = useSelector((state) => state.planets)
+  const destinations = useSelector((state) => state.destinations)
+  const vehicles = useSelector((state) => state.vehicles)
+  const token = useSelector((state) => state.token);
+
+
+  const onReset = () => {
+    getInitialDestinations();
+  };
+
+  const isAllSelected = () => {
+    let planet_names = getSelectedPlanets(allStates);
+    let vehicle_names = getSelectedVehicles(allStates);
+    return planet_names.length === NUMBER_OF_DESTINATIONS &&
+      vehicle_names.length === NUMBER_OF_DESTINATIONS 
+  };
+
   return (
     <>
     <Container className='container'>
       <header className='header'>
         Finding Falcon
       </header>
+      {allStates && planets && planets.length > 0 &&
+        vehicles && vehicles.length > 0 ? (
+          <Grid container spacing={3}>
 
-      {/* {planets.length > 0 &&
-          vehicles.length > 0 ? (
-            <Grid container spacing={3}>
-              {Object.keys(destinations).map((dest) => (
-                <Grid key={dest} item xs={12} md={6} lg={3}>
-                  <Paper className="paper">
-                    <Destination
-                      index={dest}
-                      planets={getAvailablePlanets(planets)}
-                      vehicles={getAvailableVehicles(vehicles)}
-                    />
-                  </Paper>
-                </Grid>
-              ))}
+          {Object.keys(destinations).map((dest) => (
+            <Grid key={dest} item xs={12} md={6} lg={3}>
+              <Paper className="paper">
+                <Destination
+                  index={dest}
+                  planets={getAvailablePlanets(allStates)}
+                  vehicles={getAvailableVehicles(allStates)}
+                ></Destination>
+              </Paper>
             </Grid>
+          ))}
+        </Grid>
           ) : <CircularProgress />
-          } */}
-      <Button variant="contained" onClick={findFalcone}>Hello World</Button>
+          }
+       <Grid container spacing={3} justify="center" alignItems="center">
+            <Grid item xs={12} sm={6} md={4} lg={3}>
+              <Card variant="outlined">
+                <CardContent>
+                  <Typography color="textSecondary" gutterBottom>
+                    Time Taken
+                  </Typography>
+                  <Typography variant="h5" component="h2">
+                    {getTimeTaken(allStates)}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button
+                    disabled ={!isAllSelected}
+                    variant="outlined"
+                    size="medium"
+                    color="primary"
+                    onClick={findFalcone}
+                  >
+                    Find Falcone
+                  </Button>
+                  <Button size="medium" onClick={onReset}>
+                    Reset
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          </Grid>
     </Container>
     </>
   );

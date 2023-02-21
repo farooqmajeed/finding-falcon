@@ -6,7 +6,6 @@ import {fetchPlanetAction} from "./actions";
 //actions
 
 export const fetchPlanets = () => async (dispatch) => {
-  console.log("fetch",dispatch )
     return dispatch({
       type: "apiCallBegan",
       payload: {
@@ -27,9 +26,11 @@ export const getAvailablePlanets = state => {
     }
   });
   // eslint-disable-next-line
+  console.log("getAvailable", selectedPlanets)
   return state.planets.filter(planet => {
     const index = selectedPlanets.indexOf(planet.name);
     if (index === -1){
+
       return planet;
     } 
   });
