@@ -13,10 +13,26 @@ import {
   } from "../store/action/destinations";
 
 function Destination(props) {
-    const destination = useSelector((state) => state.destination)
+    const allStates = useSelector((state) => state)
     const dispatch = useDispatch();
+    // const [planets, setPlanets] = React.useState([]);
+    // const [selectedValue, setSelectedValue] = useSelector("");
+    // const [option, setOptions] = useSelector();
     React.useEffect(() => {
-        console.log('Destination props', props);
+        console.log('Destination props', allStates);
+        // setPlanets(allStates.planets);
+        // let currentDestination = props.index;
+        // let optionItems = planets.map((planet) => (
+        //     <option key={planet.name}>{planet.name}</option>
+        //   ));
+        //   setOptions(setOptions);
+        // let selectedValueItem =
+        // allStates.destinations[props.index].selectedPlanet ||
+        // SELECT_DEST_MSG;
+        // console.log(selectedValueItem)
+
+        // setSelectedValue(selectedValueItem);
+
     }, [])
 
     const onDestinationChange = (event) => {
@@ -41,7 +57,7 @@ function Destination(props) {
                 </InputLabel>
                 {/* <NativeSelect value={selectedValue} onChange={(event) => {onDestinationChange(event)}} label="Destination">
                     <option value={selectedValue}>{selectedValue}</option>
-                    {optionItems}
+                    {option}
                 </NativeSelect> */}
             </FormControl>
         </div>
