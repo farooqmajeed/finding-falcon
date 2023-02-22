@@ -17,7 +17,7 @@ import { connect, useDispatch, useSelector } from "react-redux";
   const [vehicles, setVehicle] = React.useState([]);
 
   React.useEffect(() => {
-
+    console.log("Veh", props)
   },[])
 
   const onVehicleSelect = (event) => {

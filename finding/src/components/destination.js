@@ -11,13 +11,13 @@ import { connect, useDispatch, useSelector } from "react-redux";
 import Vehicle from './vehicle';
 import {
     addDestination
-  } from "../store/action/destinations";
+} from "../store/action/destinations";
 
 function Destination(props) {
     const allStates = useSelector((state) => state)
     const dispatch = useDispatch();
     const [planets, setPlanets] = React.useState([]);
-    const [selectedValue, setSelectedValue] =React.useState("Select Destinations");
+    const [selectedValue, setSelectedValue] = React.useState("Select Destinations");
     const [option, setOptions] = React.useState([]);
     React.useEffect(() => {
         console.log('Destination props', allStates);
@@ -25,12 +25,12 @@ function Destination(props) {
         let currentDestination = props.index;
         let optionItems = allStates.planets.map((planet) => (
             <option key={planet.name}>{planet.name}</option>
-          ));
-          console.log(optionItems)
-          setOptions(optionItems);
+        ));
+        console.log(optionItems)
+        setOptions(optionItems);
         let selectedValueItem =
-        allStates.destinations[props.index].selectedPlanet ||
-        SELECT_DEST_MSG;
+            allStates.destinations[props.index].selectedPlanet ||
+            SELECT_DEST_MSG;
         console.log(selectedValueItem)
 
         setSelectedValue(selectedValueItem);
@@ -40,8 +40,9 @@ function Destination(props) {
     const showVehicle = () => {
         let destinations = allStates.destinations;
         let currentDest = destinations[props.index];
+        console.log("currentDest", currentDest)
         return currentDest.selectedPlanet ? true : false;
-      };
+    };
 
     const onDestinationChange = (event) => {
         dispatch(addDestination({
@@ -63,20 +64,20 @@ function Destination(props) {
                 <InputLabel htmlFor="outlined-age-native-simple" >
                     {SELECT_DEST_MSG}
                 </InputLabel>
-                <NativeSelect value={selectedValue} onChange={(event) => {onDestinationChange(event)}} label="Destination">
+                <NativeSelect value={selectedValue} onChange={(event) => { onDestinationChange(event) }} label="Destination">
                     <option value={selectedValue}>{selectedValue}</option>
                     {option}
                 </NativeSelect>
             </FormControl>
 
             {showVehicle() && (
-          <RadioGroup name={props.index}>
-            <Vehicle vehicles={props.vehicles} destinationGroup={props.index} ></Vehicle>
-          </RadioGroup>
-        )}
+                <RadioGroup name={props.index}>
+                    <Vehicle vehicles={props.vehicles} destinationGroup={props.index} ></Vehicle>
+                </RadioGroup>
+            )}
         </div>
 
     )
 }
 
-export default  Destination;
+export default Destination;
