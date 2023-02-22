@@ -49,6 +49,7 @@ function Destination(props) {
             destination: props.index,
             value: event.currentTarget.value
         }))
+        setSelectedValue(event.currentTarget.value)
     }
 
 

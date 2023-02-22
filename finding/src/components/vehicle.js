@@ -18,6 +18,7 @@ import { connect, useDispatch, useSelector } from "react-redux";
 
   React.useEffect(() => {
     console.log("Veh", props)
+    setVehicle(props.vehicles)
   },[])
 
   const onVehicleSelect = (event) => {
@@ -43,13 +44,21 @@ import { connect, useDispatch, useSelector } from "react-redux";
     return state.planets.filter((planet) => planet.name === currentPlanet);
   };
 
+  const getIsRangeLess = (vehicleMaxDistance) => {
+    console.log("Vehicle", vehicleMaxDistance)
+    let planet = getCurrentPlanet();
+    let distance = planet[0] ? planet[0].distance : 0;
+    return distance > vehicleMaxDistance;
+  };
+
 
   return (
     <>
      <div className="vehicleList">
         {vehicles.map((vehicle) => {
           let index = vehicles.indexOf(vehicle);
-          let isRangeLess = this.getIsRangeLess(vehicle.max_distance);
+          let isRangeLess = getIsRangeLess(vehicle.max_distance);
+          console.log("is range: " + isRangeLess)
           return (
             <div key={index}>
               <FormControlLabel
