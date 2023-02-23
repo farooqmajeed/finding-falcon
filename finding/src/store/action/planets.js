@@ -26,7 +26,6 @@ export const getAvailablePlanets = state => {
     }
   });
   // eslint-disable-next-line
-  console.log("getAvailable", selectedPlanets)
   return state.planets.filter(planet => {
     const index = selectedPlanets.indexOf(planet.name);
     if (index === -1){

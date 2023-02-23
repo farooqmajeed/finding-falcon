@@ -23,7 +23,7 @@ import { findFalcon, getToken } from "../store/action/findFalcon";
 import Destination from './destination';
 import { NUMBER_OF_DESTINATIONS } from '../store/constant';
 
-export default function Home() {
+export default function Home(props) {
   const dispatch = useDispatch();
 
 
@@ -33,16 +33,7 @@ export default function Home() {
     dispatch(getInitialDestinations());
   }, [])
 
-  const findFalcone = async () => {
-    if (allStates.findFalcon.token) {
-      let request = {
-        token: allStates.findFalcon.token,
-        planet_names: getSelectedPlanets(allStates),
-        vehicle_names: getAvailableVehicles(allStates),
-      };
-      dispatch(findFalcon(request))
-    }
-  }
+
 
   const allStates = useSelector((state) => state)
   const planets = useSelector((state) => state.planets)
@@ -61,6 +52,23 @@ export default function Home() {
     return planet_names.length === NUMBER_OF_DESTINATIONS &&
       vehicle_names.length === NUMBER_OF_DESTINATIONS 
   };
+
+  const findFalcone = async () => {
+    console.log("find")
+    if (allStates.findFalcon.token) {
+      let apiData = {
+        token: allStates.findFalcon.token,
+        planet_names: getSelectedPlanets(allStates),
+        vehicle_names: getAvailableVehicles(allStates),
+      };
+      await dispatch(findFalcon(apiData))
+      gotoResults()
+    }
+  }
+
+  const gotoResults = () =>{
+    console.log('gotoResults', props)
+  }
 
   return (
     <>

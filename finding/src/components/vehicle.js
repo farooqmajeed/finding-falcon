@@ -17,7 +17,6 @@ import { connect, useDispatch, useSelector } from "react-redux";
   const [vehicles, setVehicle] = React.useState([]);
 
   React.useEffect(() => {
-    console.log("Veh", props)
     setVehicle(props.vehicles)
   },[])
 
@@ -29,12 +28,14 @@ import { connect, useDispatch, useSelector } from "react-redux";
     );
     let speed = vehicleObj.length ? vehicleObj[0].speed : 1;
     let time = distance / speed;
-
-    props.vehicleSelected({
-      timetaken: time,
+    let data = {
+      timetaken:time,
       selectedVehicle: event.target.value,
       destination: props.destinationGroup,
-    });
+    }
+
+    dispatch(vehicleSelected(data))
+
   };
 
   const getCurrentPlanet = () => {
@@ -45,7 +46,6 @@ import { connect, useDispatch, useSelector } from "react-redux";
   };
 
   const getIsRangeLess = (vehicleMaxDistance) => {
-    console.log("Vehicle", vehicleMaxDistance)
     let planet = getCurrentPlanet();
     let distance = planet[0] ? planet[0].distance : 0;
     return distance > vehicleMaxDistance;
@@ -58,7 +58,6 @@ import { connect, useDispatch, useSelector } from "react-redux";
         {vehicles.map((vehicle) => {
           let index = vehicles.indexOf(vehicle);
           let isRangeLess = getIsRangeLess(vehicle.max_distance);
-          console.log("is range: " + isRangeLess)
           return (
             <div key={index}>
               <FormControlLabel
